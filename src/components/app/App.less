@@ -1,0 +1,74 @@
+@import '../../variables.less';
+
+.app {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  left: 0;
+  right: 0;
+
+  overflow: hidden;
+
+  display: flex;
+  flex-direction: column;
+
+  .app-header {
+    flex-grow: 0;
+    flex-shrink: 0;
+
+    .app-header-container {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+
+      height: 3rem;
+      font-size: 2rem;
+      padding: 2rem;
+
+      .app-header-item + .app-header-item {
+        flex-grow: 0;
+        flex-shrink: 0;
+        margin-left: 2rem;
+      }
+      .app-header-spacer {
+        flex-grow: 1;
+        flex-shrink: 1;
+      }
+    }
+  }
+
+  .app-content {
+    position: relative;
+    flex-grow: 1;
+  }
+  .app-footer {
+    flex-grow: 0;
+    flex-shrink: 0;
+  }
+
+
+  .dark {
+    background-color: @lb-dark-background;
+    color: @lb-dark-text;
+    .text {
+      color: @lb-dark-text;
+    }
+  }
+
+  .std {
+    background-color: @lb-std-background;
+    color: @lb-std-text;
+    .text {
+      color: @lb-std-text;
+    }
+  }
+
+  .light {
+    background-color: @lb-light-background;
+    color: @lb-light-text;
+    .text {
+      color: @lb-light-text;
+    }
+  }
+
+}
