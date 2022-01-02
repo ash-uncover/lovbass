@@ -6,13 +6,16 @@
   "songs": {
     "title": "Titres",
     "entry": {
-      "back": "Retour à la liste"
+      "back": "Retour à la liste des titres"
     }
   },
   "events": {
     "title": "Concerts",
     "entry": {
-      "back": "Retour à la liste"
+      "back": "Retour à la liste des concerts",
+      "song": {
+        "back": "Retour au concert"
+      }
     }
   },
   "contact": {
