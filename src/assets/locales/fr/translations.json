@@ -1,0 +1,21 @@
+{
+  "loading": "Chargement...",
+  "home": {
+    "title": "Accueil"
+  },
+  "songs": {
+    "title": "Titres",
+    "entry": {
+      "back": "Retour à la liste"
+    }
+  },
+  "events": {
+    "title": "Concerts",
+    "entry": {
+      "back": "Retour à la liste"
+    }
+  },
+  "contact": {
+    "title": "Contact"
+  }
+}

@@ -18,7 +18,10 @@ export const initialState = () => ({
 
 // PATCH RELATION REDUCER //
 
-export const getSongsFetch = (state, { payload }) => {
+export const getSongsFetchFirst = (state, { payload }) => { // eslint-disable-line no-unused-vars
+  state.status = DataStates.FETCHING_FIRST
+}
+export const getSongsFetch = (state, { payload }) => { // eslint-disable-line no-unused-vars
   state.status = DataStates.FETCHING
 }
 export const getSongsSuccess = (state, { payload }) => {
@@ -42,6 +45,7 @@ const songsSlice = createSlice({
   initialState: initialState(),
 
   reducers: {
+    getSongsFetchFirst,
     getSongsFetch,
     getSongsSuccess,
     getSongsFailure
