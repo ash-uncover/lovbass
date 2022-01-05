@@ -1,9 +1,18 @@
 import React from 'react'
 
+import {
+  useTranslation,
+} from 'lib/hooks'
+
+import PageTitle from 'components/common/PageTitle'
+
 const Home = () => {
   // Hooks
+  const { t } = useTranslation()
+
+  // Rendering
   return (
-    <div>Home</div>
+    <PageTitle text={t('app:home.title')} />
   )
 }
 

@@ -25,6 +25,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: path.resolve(__dirname, '_redirects'), },
+        { from: 'src/assets', to: 'assets' }
       ],
     }),
   ],

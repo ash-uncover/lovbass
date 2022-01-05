@@ -60,6 +60,18 @@ const App = () => {
   )
 }
 
+const AppContent = () => {
+  return (
+    <div className='app'>
+      <AppHeader />
+      <div className='app-content light'>
+        <Outlet />
+      </div>
+      <AppFooter />
+    </div>
+  )
+}
+
 const AppHeader = () => {
   // HOOKS
   const [menuOpen, setMenuOpen] = useState((false))
@@ -104,18 +116,6 @@ const AppHeader = () => {
         <FontAwesomeIcon className='action-icon action-close' icon={faTimes} />
       </div>
     </header>
-  )
-}
-
-const AppContent = () => {
-  return (
-    <div className='app'>
-      <AppHeader />
-      <div className='app-content light'>
-        <Outlet />
-      </div>
-      <AppFooter />
-    </div>
   )
 }
 

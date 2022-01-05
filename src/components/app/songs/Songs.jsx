@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {
-  Link,
   Navigate,
   Route,
   Routes,
@@ -17,14 +16,11 @@ import {
   selectors as SongSelectors,
 } from 'store/data/songs'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons'
-
+import LinkBack from 'components/common/LinkBack'
+import LinkList from 'components/common/LinkList'
+import LinkListItem from 'components/common/LinkListItem'
+import PageTitle from 'components/common/PageTitle'
 import Song from 'components/common/Song'
-
-import './Songs.less'
 
 const Songs = () => {
   return (
@@ -44,16 +40,19 @@ const SongsList = () => {
 
   // Rendering
   return [
-    <h2 key='title' className='center'>{t('app:songs.title')}</h2>,
-    <ul key='list' className='songs-list'>
+    <PageTitle
+      key='title'
+      text={t('app:songs.title')}
+    />,
+    <LinkList key='list'>
       {songs.map(song => (
-        <li key={song.name} className='songs-list-entry'>
-          <Link to={`/songs/${song.name}`} className='songs-list-link'>
-            {song.artist} - {song.name}
-          </Link>
-        </li>
+        <LinkListItem
+          key={song.name}
+          to={`/songs/${song.name}`}
+          text={`${song.artist} - ${song.name}`}
+        />
       ))}
-    </ul>
+    </LinkList>
   ]
 }
 
@@ -71,10 +70,10 @@ const SongsEntry = () => {
 
   return (
     <div className='songs-entry'>
-      <Link to='/songs'>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        {t('app:songs.entry.back')}
-      </Link>
+      <LinkBack
+        to='/songs'
+        text={t('app:songs.entry.back')}
+      />
       <Song {...song} />
     </div>
   )

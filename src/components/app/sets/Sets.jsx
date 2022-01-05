@@ -7,7 +7,6 @@ import {
 } from 'lib/hooks'
 
 import {
-  Link,
   Navigate,
   Route,
   Routes,
@@ -21,14 +20,11 @@ import {
   selectors as SongSelectors,
 } from 'store/data/songs'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {
-  faArrowLeft,
-} from '@fortawesome/free-solid-svg-icons'
-
+import LinkBack from 'components/common/LinkBack'
+import LinkList from 'components/common/LinkList'
+import LinkListItem from 'components/common/LinkListItem'
+import PageTitle from 'components/common/PageTitle'
 import Song from 'components/common/Song'
-
-import './Sets.less'
 
 const Sets = () => {
   return (
@@ -51,16 +47,19 @@ const SetsList = () => {
 
   // Rendering
   return [
-    <h2 key='title' className='center'>{t('app:events.title')}</h2>,
-    <ul key='list' className='sets-list'>
+    <PageTitle
+      key='title'
+      text={t('app:events.title')}
+    />,
+    <LinkList key='list'>
       {sets.map(set => (
-        <li key={set.date} className='sets-list-entry'>
-          <Link to={`/sets/${set.date}`} className='sets-list-link'>
-            {set.date} - {set.place}
-          </Link>
-        </li>
+        <LinkListItem
+          key={set.date}
+          to={`/sets/${set.date}`}
+          text={`${set.date} - ${set.place}`}
+        />
       ))}
-    </ul>
+    </LinkList>
   ]
 }
 
@@ -84,25 +83,26 @@ const SetsEntry = () => {
   return (
     <div className='sets-entry'>
       { setId !== 'latest' ? (
-        <Link to='/sets'>
-          <FontAwesomeIcon icon={faArrowLeft} />
-          {t('app:events.entry.back')}
-        </Link>
+        <LinkBack
+          to='/sets'
+          text={t('app:events.entry.back')}
+        />
       ) : null}
-      <div className='set'>
-        <h2 className='set-title'>{set.date} - {set.place} - {set.songs.length}</h2>
-        <ul>
-          {set.songs.map((song) => {
-            return (
-              <li className='set-song-entry' key={song}>
-                <Link className='set-song-link' to={`/sets/${set.date}/${song}`}>
-                  {song}
-                </Link>
-              </li>
-            )
-          })}
-        </ul>
-      </div>
+      <PageTitle
+        key='title'
+        text={`${set.date} - ${set.place} - ${set.songs.length}`}
+      />
+      <LinkList>
+        {set.songs.map((song) => {
+          return (
+            <LinkListItem
+              key={song}
+              to={`/sets/${set.date}/${song}`}
+              text={song}
+            />
+          )
+        })}
+      </LinkList>
     </div>
   )
 }
@@ -113,10 +113,10 @@ const SetsEntrySong = () => {
   const song = useSelector(SongSelectors.selectSong(songId))
   return (
     <div className='sets-entry-song'>
-      <Link to={`/sets/${setId}`}>
-        <FontAwesomeIcon icon={faArrowLeft} />
-        {t('app:events.entry.song.back')}
-      </Link>
+      <LinkBack
+        to={`/sets/${setId}`}
+        text={t('app:events.entry.song.back')}
+      />
       <Song {...song} />
     </div>
   )

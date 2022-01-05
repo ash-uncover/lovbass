@@ -10,7 +10,7 @@ const Song = ({
   return (
     <div className='song'>
       <h2 className='song-title'>{artist} - {name}</h2>
-      {lyrics.split('\n\n').map((p, pIndex) => <SongParagraph text={p} key={pIndex} />)}
+      {lyrics.map((p, pIndex) => <SongParagraph text={p} key={pIndex} />)}
     </div>
   )
 }
@@ -18,10 +18,9 @@ const Song = ({
 const SongParagraph = ({
   text
 }) => {
-  const formattedText = text.split('\n').filter(t => Boolean(t))
   return (
     <p className='song-paragraph'>
-      {formattedText.map((line, lineIndex) => <SongLine key={lineIndex} text={line} />)}
+      {text.map((line, lineIndex) => <SongLine key={lineIndex} text={line} />)}
     </p>
   )
 }
