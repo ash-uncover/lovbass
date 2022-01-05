@@ -13,8 +13,8 @@ import {
 } from 'react-router-dom'
 
 import {
-  selectors as SetSelectors
-} from 'store/data/sets'
+  selectors as EventSelectors
+} from 'store/data/events'
 
 import {
   selectors as SongSelectors,
@@ -26,24 +26,24 @@ import LinkListItem from 'components/common/LinkListItem'
 import PageTitle from 'components/common/PageTitle'
 import Song from 'components/common/Song'
 
-const Sets = () => {
+const Events = () => {
   return (
     <Routes>
       <Route path='/'>
-        <Route index element={<SetsList />} />
-        <Route path=':setId'>
-          <Route index element={<SetsEntry />} />
-          <Route path=':songId' element={<SetsEntrySong />} />
+        <Route index element={<EventsList />} />
+        <Route path=':eventId'>
+          <Route index element={<EventsEntry />} />
+          <Route path=':songId' element={<EventsEntrySong />} />
         </Route>
       </Route>
     </Routes>
   )
 }
 
-const SetsList = () => {
+const EventsList = () => {
   // Hooks
   const { t } = useTranslation()
-  const sets = useSelector(SetSelectors.selectSetsData)
+  const events = useSelector(EventSelectors.selectEventsData)
 
   // Rendering
   return [
@@ -52,52 +52,52 @@ const SetsList = () => {
       text={t('app:events.title')}
     />,
     <LinkList key='list'>
-      {sets.map(set => (
+      {events.map(event => (
         <LinkListItem
-          key={set.date}
-          to={`/sets/${set.date}`}
-          text={`${set.date} - ${set.place}`}
+          key={event.date}
+          to={`/events/${event.date}`}
+          text={`${event.date} - ${event.place}`}
         />
       ))}
     </LinkList>
   ]
 }
 
-const SetsEntry = () => {
+const EventsEntry = () => {
   // Hooks
   const { t } = useTranslation()
-  const { setId } = useParams()
-  let set = null
-  if (setId === 'latest') {
-    set = useSelector(SetSelectors.selectSetLatest)
+  const { eventId } = useParams()
+  let event = null
+  if (eventId === 'latest') {
+    event = useSelector(EventSelectors.selectEventLatest)
   } else {
-    set = useSelector(SetSelectors.selectSet(setId))
+    event = useSelector(EventSelectors.selectEvent(eventId))
   }
 
-  if (!set) {
+  if (!event) {
     return (
-      <Navigate to='/sets' />
+      <Navigate to='/events' />
     )
   }
 
   return (
-    <div className='sets-entry'>
-      { setId !== 'latest' ? (
+    <div className='events-entry'>
+      { eventId !== 'latest' ? (
         <LinkBack
-          to='/sets'
+          to='/events'
           text={t('app:events.entry.back')}
         />
       ) : null}
       <PageTitle
         key='title'
-        text={`${set.date} - ${set.place} - ${set.songs.length}`}
+        text={`${event.date} - ${event.place} - ${event.songs.length}`}
       />
       <LinkList>
-        {set.songs.map((song) => {
+        {event.songs.map((song) => {
           return (
             <LinkListItem
               key={song}
-              to={`/sets/${set.date}/${song}`}
+              to={`/events/${event.date}/${song}`}
               text={song}
             />
           )
@@ -107,19 +107,18 @@ const SetsEntry = () => {
   )
 }
 
-const SetsEntrySong = () => {
+const EventsEntrySong = () => {
   const { t } = useTranslation()
-  const { setId, songId } = useParams()
+  const { eventId, songId } = useParams()
   const song = useSelector(SongSelectors.selectSong(songId))
-  return (
-    <div className='sets-entry-song'>
-      <LinkBack
-        to={`/sets/${setId}`}
-        text={t('app:events.entry.song.back')}
-      />
-      <Song {...song} />
-    </div>
-  )
+  return [
+    <LinkBack
+      key='link'
+      to={`/events/${eventId}`}
+      text={t('app:events.entry.song.back')}
+    />,
+    <Song key='song' {...song} />
+  ]
 }
 
-export default Sets
+export default Events

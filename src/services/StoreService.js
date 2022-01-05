@@ -13,8 +13,8 @@ import {
 } from 'store/data/songs'
 
 import {
-  selectors as SetSelectors
-} from 'store/data/sets'
+  selectors as EventSelectors
+} from 'store/data/events'
 
 const StoreService = {}
 
@@ -52,12 +52,12 @@ StoreService.useSongs = () => {
   )
 }
 
-StoreService.useSets = () => {
+StoreService.useEvents = () => {
   return useStoreData(
-    SetSelectors.selectSetsData,
-    SetSelectors.selectSetsStatus,
-    SetSelectors.selectSetsError,
-    DataService.getSets
+    EventSelectors.selectEventsData,
+    EventSelectors.selectEventsStatus,
+    EventSelectors.selectEventsError,
+    DataService.getEvents
   )
 }
 

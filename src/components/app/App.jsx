@@ -29,17 +29,17 @@ import {
 
 import Contact from 'components/app/contact/Contact'
 import Home from 'components/app/home/Home'
-import Sets from 'components/app/sets/Sets'
+import Events from 'components/app/events/Events'
 import Songs from 'components/app/songs/Songs'
 
 import './App.less'
 
 const App = () => {
   const songs = StoreService.useSongs()
-  const sets = StoreService.useSets()
+  const events = StoreService.useEvents()
 
   const { t } = useTranslation()
-  if (!songs.status.loaded || !sets.status.loaded) {
+  if (!songs.status.loaded || !events.status.loaded) {
     return (
       <div>{t('app:loading')}</div>
     )
@@ -51,7 +51,7 @@ const App = () => {
         <Route path='/' element={<AppContent />}>
           <Route index element={<Home />} />
           <Route path='songs/*' element={<Songs />}/>
-          <Route path='sets/*' element={<Sets />} />
+          <Route path='events/*' element={<Events />} />
           <Route path='contact' element={<Contact />} />
         </Route>
         <Route path='*' element={<Navigate to='/' />} />
@@ -102,7 +102,7 @@ const AppHeader = () => {
           <FontAwesomeIcon icon={faMusic} />
           {t('app:songs.title')}
         </NavLink>
-        <NavLink className='text app-header-item' to='/sets' onClick={onMenuPress}>
+        <NavLink className='text app-header-item' to='/events' onClick={onMenuPress}>
           <FontAwesomeIcon icon={faCalendarAlt} />
           {t('app:events.title')}
         </NavLink>

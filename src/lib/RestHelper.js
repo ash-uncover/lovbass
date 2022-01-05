@@ -1,5 +1,3 @@
-/* globals fetch, Headers */
-
 export const request = async (url, method) => {
   const headers = new Headers()
   headers.append('Accept', 'application/json')

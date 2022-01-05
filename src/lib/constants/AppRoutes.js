@@ -1,7 +1,7 @@
 const AppRoutes = {
   HOME: 'home',
   SONGS: 'songs',
-  SETS: 'sets',
+  EVENTS: 'events',
   CONTACT: 'contact'
 }
 

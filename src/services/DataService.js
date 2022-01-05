@@ -1,9 +1,9 @@
 import { get } from 'lib/RestHelper'
 
 import { actions as songActions } from 'store/data/songs'
-import { actions as setActions } from 'store/data/sets'
+import { actions as setActions } from 'store/data/events'
 
-import 'assets/data/sets.json'
+import 'assets/data/events.json'
 import 'assets/data/songs.json'
 
 export const getSongs = async (dispatch) => {
@@ -22,31 +22,29 @@ export const getSongs = async (dispatch) => {
     })
 }
 
-export const getSets = async (dispatch) => {
-  dispatch(setActions.getSetsFetchFirst())
-  return get('http://localhost:8080/assets/data/sets.json')
+export const getEvents = async (dispatch) => {
+  dispatch(setActions.getEventsFetchFirst())
+  return get('http://localhost:8080/assets/data/events.json')
     .then((result) => {
-      console.log(JSON.parse(JSON.stringify(result)))
       result.data.sort(
-        (set1, set2) => {
-          const date1 = new Date(set1.date)
+        (event1, event2) => {
+          const date1 = new Date(event1.date)
           console.log(date1)
-          const date2 = new Date(set2.date)
+          const date2 = new Date(event2.date)
           console.log(date2)
           return   date1.getTime() - date2.getTime()
         }
       )
-      console.log(result)
-      dispatch(setActions.getSetsSuccess(result))
+      dispatch(setActions.getEventsSuccess(result))
     })
     .catch((error) => {
-      dispatch(setActions.getSetsFailure({ error }))
+      dispatch(setActions.getEventsFailure({ error }))
     })
 }
 
 const DataService = {
   getSongs,
-  getSets
+  getEvents
 }
 
 export default DataService

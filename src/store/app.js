@@ -8,7 +8,7 @@ export const initialState = () => ({
 
 // START //
 
-export const appStart = (state, action) => {
+export const appStart = (state) => {
   state.started = true
 }
 
