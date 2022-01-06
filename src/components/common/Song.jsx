@@ -1,5 +1,7 @@
 import React from 'react'
 
+import PageTitle from 'components/common/PageTitle'
+
 import './Song.less'
 
 const Song = ({
@@ -9,7 +11,7 @@ const Song = ({
 }) => {
   return (
     <div className='song'>
-      <h2 className='song-title'>{artist} - {name}</h2>
+      <PageTitle text={`${artist} - ${name}`} />
       {lyrics.map((p, pIndex) => <SongParagraph text={p} key={pIndex} />)}
     </div>
   )
