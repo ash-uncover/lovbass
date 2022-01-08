@@ -12,9 +12,13 @@ export const getSongs = async (dispatch) => {
     .then((result) => {
       result.data.sort(
         (song1, song2) => {
-          return song2.name.localeCompare(song1.name)
+          if (song1.artist === song2.artist) {
+            return song1.name.localeCompare(song2.name)
+          }
+          return song1.artist.localeCompare(song2.artist)
         }
       )
+      console.log(result.data)
       dispatch(songActions.getSongsSuccess(result))
     })
     .catch((error) => {
