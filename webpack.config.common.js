@@ -20,7 +20,7 @@ module.exports = {
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: 'src/index.html',
-      title: 'Love Bass',
+      title: 'Lovbass',
     }),
     new CopyPlugin({
       patterns: [
