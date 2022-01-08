@@ -8,7 +8,7 @@ import 'assets/data/songs.json'
 
 export const getSongs = async (dispatch) => {
   dispatch(songActions.getSongsFetchFirst())
-  return get('http://localhost:8080/assets/data/songs.json')
+  return get('https://raw.githubusercontent.com/ash-uncover/lovebass/main/src/assets/data/songs.json')
     .then((result) => {
       result.data.sort(
         (song1, song2) => {
@@ -24,7 +24,7 @@ export const getSongs = async (dispatch) => {
 
 export const getEvents = async (dispatch) => {
   dispatch(setActions.getEventsFetchFirst())
-  return get('http://localhost:8080/assets/data/events.json')
+  return get('https://raw.githubusercontent.com/ash-uncover/lovebass/main/src/assets/data/events.json')
     .then((result) => {
       result.data.sort(
         (event1, event2) => {
