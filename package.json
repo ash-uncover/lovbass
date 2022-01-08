@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@babel/core": "latest",
-    "@babel/eslint-parser": "^7.16.5",
+    "@babel/eslint-parser": "latest",
     "@babel/preset-env": "latest",
     "@babel/preset-react": "latest",
     "@fortawesome/fontawesome-svg-core": "latest",
@@ -56,7 +56,7 @@
   },
   "devDependencies": {
     "eslint": "latest",
-    "eslint-plugin-react": "^7.28.0",
+    "eslint-plugin-react": "latest",
     "snazzy": "latest",
     "standard": "latest"
   },

@@ -1,0 +1,15 @@
+{
+  "loading": "Loading...",
+  "home": {
+    "title": "Home"
+  },
+  "songs": {
+    "title": "Songs"
+  },
+  "sets": {
+    "title": "sets"
+  },
+  "contact": {
+    "title": "Contact"
+  }
+}
