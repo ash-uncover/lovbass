@@ -85,7 +85,7 @@ const AppHeader = () => {
 
   // RENDERING
 
-  const menuClass = ['app-header dark']
+  const menuClass = ['app-header', 'dark']
   if (menuOpen) {
     menuClass.push('open')
   }
